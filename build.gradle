@@ -1,0 +1,43 @@
+
+plugins {
+    id 'java-library'
+}
+
+sourceCompatibility = "11"
+targetCompatibility = "11"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+}
+
+jar {
+    doFirst {
+        manifest {
+            attributes(
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Implementation-Vendor': project.group,
+                'Specification-Title': project.name,
+                'Specification-Version': project.version,
+                'Specification-Vendor': project.group,
+                'Built-By': System.getProperty('user.name'),
+                'Created-By': System.properties['java.version'] + " (" + System.properties['java.vendor'] + " " + System.properties['java.vm.version'] + ")",
+                'Permissions': 'all-permissions',
+                'Codebase': '*'
+            )
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    reports {
+        html.enabled = true
+    }
+}
