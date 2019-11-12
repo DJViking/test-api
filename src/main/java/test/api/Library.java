@@ -27,9 +27,7 @@ public class Library {
      * <p>
      * The OpenJDK from AdoptOpenJDK has a different warning:
      * <p>
-     * warning: @param "value" has already been specified
-     * @param value
-     *            some value
+     * warning: no description for <code>@param<code>
      * @param value
      */
     public void distributionJavaComplains(String value) {
@@ -43,4 +41,12 @@ public class Library {
      */
     public void authorInMethod() {
     }
+
+    /**
+     * This method has a code snippet from snippetdoclet.
+     * {@codesnippet snippetMethod}
+     */
+    public void snippetMethod() {
+    }
+
 }

@@ -6,6 +6,10 @@ plugins {
 sourceCompatibility = "11"
 targetCompatibility = "11"
 
+configurations {
+    snippetdoclet
+}
+
 repositories {
     jcenter()
 }
@@ -13,6 +17,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+
+    snippetdoclet group: 'org.apidesign.javadoc', name: 'codesnippet-doclet', version: '0.31'
 }
 
 jar {
@@ -40,4 +46,11 @@ test {
     reports {
         html.enabled = true
     }
+}
+
+javadoc {
+    options.doclet = "org.apidesign.javadoc.codesnippet.Doclet"
+    options.docletpath = configurations.snippetdoclet.files.asType(List)
+    options.addStringOption "snippetpath", "src/test/java"
+    options.addStringOption "maxLineLength", "120"
 }
